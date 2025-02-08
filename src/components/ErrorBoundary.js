@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { logError } from "../utils/logger";
 
 /**
  * ErrorBoundary catches JavaScript errors in its child component tree.
@@ -10,14 +11,14 @@ class ErrorBoundary extends React.Component {
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError() {
+  static getDerivedStateFromError(error) {
     // Update state so the next render shows the fallback UI.
     return { hasError: true };
   }
 
   componentDidCatch(error, errorInfo) {
-    // Log error to an external service if desired.
-    console.error("ErrorBoundary caught an error:", error, errorInfo);
+    // Log the error details for debugging.
+    logError("ErrorBoundary caught an error:", error, errorInfo);
   }
 
   render() {

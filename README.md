@@ -6,7 +6,6 @@ A beautifully designed interactive quiz app with a clean, minimal, and engaging 
 
 ## Table of Contents
 
-- [Introduction](#introduction)
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -54,7 +53,7 @@ The **Quiz App** is a modern web application built with React, React Router, and
 
 ### Prerequisites
 
-- **Node.js** (preferably version 18 via [nvm](https://github.com/nvm-sh/nvm))
+- **Node.js** (preferably version 18)
 - **npm**
 
 ### Steps
@@ -65,3 +64,52 @@ The **Quiz App** is a modern web application built with React, React Router, and
    git clone https://github.com/yourusername/quiz-app.git
    cd quiz-app
    ```
+
+## Project Structure
+
+Below is an overview of the directory structure along with a brief description of each folder and key file.
+
+```plaintext
+quiz-app/
+├── README.md                # Project overview, instructions, and documentation.
+├── node_modules/            # Installed dependencies (managed by npm).
+├── package-lock.json        # Lock file ensuring reproducible builds.
+├── package.json             # Project configuration, scripts, and dependency definitions.
+├── public/                  # Static assets and HTML template.
+│   ├── favicon.ico
+│   ├── index.html           # Main HTML file used as the entry point.
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+└── src/                     # All source code for the application.
+    ├── App.css              # Global CSS for the main App component.
+    ├── App.js               # Main App component; includes routing, lazy loading, error boundaries.
+    ├── App.test.js          # Tests for the App component.
+    ├── assets/              # Static assets (images, fonts, icons, etc.).
+    ├── components/          # Reusable UI components.
+    │   ├── ErrorBoundary.js # Catches and logs errors in the component tree.
+    │   └── Loading.js       # Fallback UI shown while lazy-loaded components are being fetched.
+    ├── data/                # Static data files.
+    │   └── quizData.js      # Quiz questions and answers.
+    ├── hooks/               # Custom React hooks for encapsulating business logic.
+    │   ├── useLocalStorage.js  # Manages localStorage read/write logic.
+    │   └── useQuiz.js       # Handles quiz state, progression, and scoring.
+    ├── index.css            # Global CSS resets and styling.
+    ├── index.js             # Application entry point; renders App inside BrowserRouter.
+    ├── logo.svg             # Example logo asset.
+    ├── pages/               # Page-level components corresponding to app routes.
+    │   ├── Dashboard.js     # Displays the user's quiz history.
+    │   ├── Home.js          # Landing page for subject selection.
+    │   ├── Quiz.js          # Main quiz interface; uses the useQuiz hook.
+    │   └── Recap.js         # Provides a detailed recap of quiz performance.
+    ├── reportWebVitals.js   # Performance measurement utilities.
+    ├── services/            # Business logic and side-effect handlers.
+    │   └── quizService.js   # Manages saving and retrieving quiz results via localStorage.
+    ├── setupTests.js        # Test configuration and setup.
+    ├── styles/              # Styled-components and theme definitions.
+    │   ├── GlobalStyles.js  # Global styles and CSS resets.
+    │   └── theme.js         # Theming and design tokens for the app.
+    └── utils/               # Utility functions.
+        └── logger.js        # Logging utility (logInfo, logWarn, logError) for debugging.
+```

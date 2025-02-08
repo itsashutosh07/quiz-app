@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { logInfo } from "../utils/logger";
 
 /**
  * useQuiz hook encapsulates the state and logic for the quiz.
@@ -16,6 +17,7 @@ const useQuiz = (questions) => {
    * @param {object} option - The selected answer option.
    */
   const handleOptionSelect = (option) => {
+    logInfo("Option selected.");
     setSelectedAnswer(option);
   };
 
@@ -26,9 +28,17 @@ const useQuiz = (questions) => {
    * @param {function} navigate - Navigation function to change route.
    */
   const handleNext = (subject, saveResult, navigate) => {
-    if (selectedAnswer === null) return;
+    if (selectedAnswer === null) {
+      logInfo("No answer selected, skipping handleNext.");
+      return;
+    }
 
     const isCorrect = selectedAnswer.isCorrect;
+    // logInfo(
+    //   `Answer for Q${currentQuestion + 1} is ${
+    //     isCorrect ? "correct" : "incorrect"
+    //   }.`
+    // );
     setScore((prev) => (isCorrect ? prev + 1 : prev));
 
     const answerRecord = {
@@ -41,9 +51,10 @@ const useQuiz = (questions) => {
     setSelectedAnswer(null);
 
     if (currentQuestion + 1 < questions.length) {
+      logInfo(`Proceeding to question ${currentQuestion + 2}.`);
       setCurrentQuestion((prev) => prev + 1);
     } else {
-      // Save the final quiz result.
+      logInfo("Quiz finished. Saving result and navigating to recap.");
       saveResult({
         subject,
         score: isCorrect ? score + 1 : score,

@@ -18,7 +18,7 @@ const Recap = () => {
       </Score>
       <List>
         {answers.map((item, index) => (
-          <ListItem key={index} correct={item.isCorrect}>
+          <ListItem key={index} $correct={item.isCorrect}>
             <strong>Q{index + 1}:</strong> {item.question}
             <br />
             Your Answer: {item.selected} {item.isCorrect ? "✔️" : "❌"}
@@ -59,7 +59,7 @@ const List = styled.ul`
 
 const ListItem = styled.li`
   background: #f8f9fa;
-  border-left: 5px solid ${({ correct }) => (correct ? "#28a745" : "#dc3545")};
+  border-left: 5px solid ${({ $correct }) => ($correct ? "#28a745" : "#dc3545")};
   margin-bottom: 15px;
   padding: 15px;
   border-radius: 4px;
