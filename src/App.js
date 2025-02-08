@@ -1,9 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import Quiz from "./components/Quiz";
-import Recap from "./components/Recap";
-import Dashboard from "./components/Dashboard";
+import Home from "./pages/Home";
+import Quiz from "./pages/Quiz";
+import Recap from "./pages/Recap";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
