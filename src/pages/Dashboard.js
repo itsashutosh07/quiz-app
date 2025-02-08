@@ -1,11 +1,14 @@
+// src/pages/Dashboard.js
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { getQuizResults } from "../services/quizService";
+import useLocalStorage from "../hooks/useLocalStorage";
 
-
+/**
+ * Dashboard page displays all stored quiz results.
+ */
 const Dashboard = () => {
-  const quizResults = getQuizResults();
+  const [quizResults] = useLocalStorage("quizResults", []);
 
   return (
     <Container>
@@ -34,6 +37,7 @@ const Dashboard = () => {
 
 export default Dashboard;
 
+// --- Styled Components ---
 const Container = styled.div`
   text-align: center;
   padding: 30px;

@@ -1,64 +1,27 @@
-import React, { useState } from "react";
+// src/pages/Quiz.js
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { quizData } from "../data/quizData";
+import useQuiz from "../hooks/useQuiz";
 import { saveQuizResult } from "../services/quizService";
 
-
+/**
+ * Quiz page that presents quiz questions and tracks progress.
+ */
 const Quiz = () => {
   const { subject } = useParams();
   const navigate = useNavigate();
-  // Ensure questions is at least an empty array if not defined
   const questions = quizData[subject] || [];
 
-  // Always call hooks
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [score, setScore] = useState(0);
-  const [answers, setAnswers] = useState([]);
+  // Always call the hook unconditionally
+  const { currentQuestion, selectedAnswer, handleOptionSelect, handleNext } =
+    useQuiz(questions);
 
-  // Now check if there are any questions to show
+  // Now, if there are no questions, return early.
   if (questions.length < 1) {
     return <p>No quiz available for this subject.</p>;
   }
-
-  // ... rest of your Quiz component logic
-  const handleOptionSelect = (option) => {
-    setSelectedAnswer(option);
-  };
-
-  const handleNext = () => {
-    if (selectedAnswer === null) return;
-
-    const isCorrect = selectedAnswer.isCorrect;
-    if (isCorrect) setScore(score + 1);
-
-    const answerRecord = {
-      question: questions[currentQuestion].question,
-      selected: selectedAnswer.answer,
-      isCorrect,
-    };
-    setAnswers([...answers, answerRecord]);
-    setSelectedAnswer(null);
-
-    if (currentQuestion + 1 < questions.length) {
-      setCurrentQuestion(currentQuestion + 1);
-    } else {
-      saveQuizResult({
-        subject,
-        score: isCorrect ? score + 1 : score,
-        total: questions.length,
-        timestamp: new Date().toLocaleString(),
-      });
-      navigate("/recap", {
-        state: {
-          answers: [...answers, answerRecord],
-          score: isCorrect ? score + 1 : score,
-          total: questions.length,
-        },
-      });
-    }
-  };
 
   return (
     <Container>
@@ -77,7 +40,10 @@ const Quiz = () => {
           </OptionButton>
         ))}
       </OptionsContainer>
-      <NextButton onClick={handleNext} disabled={selectedAnswer === null}>
+      <NextButton
+        onClick={() => handleNext(subject, saveQuizResult, navigate)}
+        disabled={selectedAnswer === null}
+      >
         {currentQuestion + 1 === questions.length ? "Finish" : "Next"}
       </NextButton>
     </Container>
@@ -86,6 +52,7 @@ const Quiz = () => {
 
 export default Quiz;
 
+// --- Styled Components ---
 const Container = styled.div`
   text-align: center;
   padding: 30px;
