@@ -1,6 +1,6 @@
 # Quiz App
 
-A beautifully designed interactive quiz app for high-school students. Test your knowledge in Math, Physics, and Chemistry with a clean, minimal, and engaging interface—perfect for self-assessment and quick learning sessions!
+A beautifully designed interactive quiz app with a clean, minimal, and engaging interface—perfect for self-assessment and quick learning sessions!
 
 ---
 
@@ -25,23 +25,27 @@ The **Quiz App** is a modern web application built with React, React Router, and
 
 ## Features
 
-- **Interactive Quizzes:**  
+- **Interactive Quizzes:**
+
   - Each quiz consists of 5 carefully curated questions.
   - One question is displayed at a time with a clear, intuitive **Next** button for seamless navigation.
 
-- **Detailed Recap:**  
+- **Detailed Recap:**
+
   - Receive a comprehensive breakdown of your performance at the end of each quiz.
   - Instantly see which questions you got right or wrong.
 
-- **User Dashboard:**  
+- **User Dashboard:**
+
   - Keep track of your progress over time.
   - View a history of your quiz attempts and scores, stored locally in your browser.
 
-- **Modern UI/UX:**  
+- **Modern UI/UX:**
+
   - Clean, minimal design with consistent padding, subtle colors, and thoughtfully placed icons.
   - Fully responsive layout ensuring an optimal experience on both desktop and mobile devices.
 
-- **Local Storage Integration:**  
+- **Local Storage Integration:**
   - Quiz results are securely saved in your browser, allowing you to review your performance even after closing the app.
 
 ---
@@ -60,3 +64,4 @@ The **Quiz App** is a modern web application built with React, React Router, and
    ```bash
    git clone https://github.com/yourusername/quiz-app.git
    cd quiz-app
+   ```
