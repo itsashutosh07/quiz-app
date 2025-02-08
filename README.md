@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Quiz App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A beautifully designed interactive quiz app for high-school students. Test your knowledge in Math, Physics, and Chemistry with a clean, minimal, and engaging interface—perfect for self-assessment and quick learning sessions!
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Introduction
 
-### `npm test`
+The **Quiz App** is a modern web application built with React, React Router, and styled-components. Designed with both functionality and aesthetics in mind, this app offers an engaging way for students to test their knowledge through interactive quizzes. Whether you’re revising concepts or challenging yourself, the Quiz App provides immediate feedback with a detailed breakdown of your performance.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Interactive Quizzes:**  
+  - Each quiz consists of 5 carefully curated questions.
+  - One question is displayed at a time with a clear, intuitive **Next** button for seamless navigation.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Detailed Recap:**  
+  - Receive a comprehensive breakdown of your performance at the end of each quiz.
+  - Instantly see which questions you got right or wrong.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **User Dashboard:**  
+  - Keep track of your progress over time.
+  - View a history of your quiz attempts and scores, stored locally in your browser.
 
-### `npm run eject`
+- **Modern UI/UX:**  
+  - Clean, minimal design with consistent padding, subtle colors, and thoughtfully placed icons.
+  - Fully responsive layout ensuring an optimal experience on both desktop and mobile devices.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **Local Storage Integration:**  
+  - Quiz results are securely saved in your browser, allowing you to review your performance even after closing the app.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Installation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Prerequisites
 
-## Learn More
+- **Node.js** (preferably version 18 via [nvm](https://github.com/nvm-sh/nvm))
+- **npm**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Steps
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. **Clone the repository:**
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   ```bash
+   git clone https://github.com/yourusername/quiz-app.git
+   cd quiz-app
