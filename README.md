@@ -10,9 +10,6 @@ A beautifully designed interactive quiz app with a clean, minimal, and engaging 
 - [Installation](#installation)
 - [Usage](#usage)
 - [Project Structure](#project-structure)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgments](#acknowledgments)
 
 ---
 
@@ -65,9 +62,34 @@ The **Quiz App** is a modern web application built with React, React Router, and
    cd quiz-app
    ```
 
+2. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+
+   ```bash
+   npm start
+   ```
+
+## Usage
+
+- **Home Page:**
+  - Select your subject to begin a quiz.
+
+- **Quiz Interface:**
+  - Answer one question at a time. After the final question, view a detailed recap of your performance.
+
+- **Dashboard:**
+  - Check your past quiz attempts, complete with scores and timestamps.
+
+
 ## Project Structure
 
-Below is an overview of the directory structure along with a brief description of each folder and key file.
+Check your past quiz attempts, complete with scores and timestamps.
+
 
 ```plaintext
 quiz-app/
