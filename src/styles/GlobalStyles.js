@@ -9,15 +9,21 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background-color: #f4f6f8;
-    color: #333;
-    font-family: 'Inter', sans-serif;
+    background: ${({ theme }) => theme.background};
+    color: ${({ theme }) => theme.text};
+    font-family: ${({ theme }) => theme.fontFamily};
     line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
+    padding: ${({ theme }) => theme.padding};
   }
 
   /* Links */
   a {
     text-decoration: none;
     color: inherit;
+  }
+  
+  button {
+    font-family: inherit;
   }
 `;

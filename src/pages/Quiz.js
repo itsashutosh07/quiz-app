@@ -1,4 +1,3 @@
-// src/pages/Quiz.js
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -7,27 +6,29 @@ import useQuiz from "../hooks/useQuiz";
 import { saveQuizResult } from "../services/quizService";
 
 /**
- * Quiz page that presents quiz questions and tracks progress.
+ * Quiz page presents quiz questions, options, and navigation.
  */
 const Quiz = () => {
   const { subject } = useParams();
   const navigate = useNavigate();
   const questions = quizData[subject] || [];
 
-  // Always call the hook unconditionally
+  // Use custom hook to manage quiz state and logic
   const { currentQuestion, selectedAnswer, handleOptionSelect, handleNext } =
     useQuiz(questions);
 
   // Now, if there are no questions, return early.
   if (questions.length < 1) {
-    return <p>No quiz available for this subject.</p>;
+    return <Message>No quiz available for this subject.</Message>;
   }
 
   return (
-    <Container>
-      <QuestionCount>
-        Question {currentQuestion + 1} of {questions.length}
-      </QuestionCount>
+    <QuizContainer>
+      <QuestionHeader>
+        <QuestionCount>
+          Question {currentQuestion + 1} of {questions.length}
+        </QuestionCount>
+      </QuestionHeader>
       <QuestionText>{questions[currentQuestion].question}</QuestionText>
       <OptionsContainer>
         {questions[currentQuestion].options.map((option, index) => (
@@ -46,66 +47,81 @@ const Quiz = () => {
       >
         {currentQuestion + 1 === questions.length ? "Finish" : "Next"}
       </NextButton>
-    </Container>
+    </QuizContainer>
   );
 };
 
 export default Quiz;
 
-// --- Styled Components ---
-const Container = styled.div`
-  text-align: center;
-  padding: 30px;
+const QuizContainer = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  padding: ${({ theme }) => theme.padding};
+`;
+
+const QuestionHeader = styled.div`
+  margin-bottom: 20px;
 `;
 
 const QuestionCount = styled.h3`
-  color: #555;
+  color: ${({ theme }) => theme.primary};
   margin-bottom: 10px;
+  text-align: center;
 `;
 
 const QuestionText = styled.h2`
-  margin: 20px 0;
-  color: #333;
+  font-size: 1.5rem;
+  color: ${({ theme }) => theme.text};
+  text-align: center;
+  margin-bottom: 30px;
 `;
 
 const OptionsContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   margin-bottom: 30px;
-  align-items: center;
 `;
 
 const OptionButton = styled.button`
-  background: ${({ selected }) => (selected ? "#0056b3" : "#007bff")};
-  color: white;
-  padding: 12px 20px;
-  width: 80%;
+  background: ${({ selected, theme }) =>
+    selected ? theme.primaryHover : theme.primary};
+  color: #fff;
+  padding: 15px;
   border: none;
-  border-radius: 5px;
+  border-radius: ${({ theme }) => theme.borderRadius};
   cursor: pointer;
   transition: background 0.2s;
 
   &:hover {
-    background: ${({ selected }) => (selected ? "#004494" : "#0056b3")};
+    background: ${({ theme }) => theme.primaryHover};
   }
 `;
 
 const NextButton = styled.button`
-  background: #28a745;
-  color: white;
+  background: ${({ theme }) => theme.success};
+  color: #fff;
   padding: 12px 30px;
   border: none;
-  border-radius: 5px;
+  border-radius: ${({ theme }) => theme.borderRadius};
   cursor: pointer;
   transition: background 0.2s;
+  width: 100%;
 
   &:disabled {
-    background: #a8d5a8;
+    background: ${({ theme }) =>
+      theme.background === "#FFFFFF" ? "#ccc" : "#444"};
     cursor: not-allowed;
   }
 
   &:hover:enabled {
-    background: #1e7e34;
+    background: ${({ theme }) => theme.successHover};
   }
+`;
+
+const Message = styled.p`
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 50px;
+  color: ${({ theme }) => theme.text};
 `;

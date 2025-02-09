@@ -1,17 +1,22 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
 import styled from "styled-components";
+import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
+/**
+ * Recap page displays quiz results with detailed breakdown.
+ */
 const Recap = () => {
   const { state } = useLocation();
+
   if (!state) {
-    return <p>No quiz data found. Please take a quiz first.</p>;
+    return <Message>No quiz data found. Please take a quiz first.</Message>;
   }
 
   const { answers, score, total } = state;
 
   return (
-    <Container>
+    <RecapContainer>
       <Title>Quiz Recap</Title>
       <Score>
         Your Score: {score} / {total}
@@ -19,66 +24,97 @@ const Recap = () => {
       <List>
         {answers.map((item, index) => (
           <ListItem key={index} $correct={item.isCorrect}>
-            <strong>Q{index + 1}:</strong> {item.question}
-            <br />
-            Your Answer: {item.selected} {item.isCorrect ? "✔️" : "❌"}
+            <Question>
+              <strong>Q{index + 1}:</strong> {item.question}
+            </Question>
+            <Answer>
+              Your Answer: {item.selected}{" "}
+              {item.isCorrect ? (
+                <FaCheckCircle color="#28a745" />
+              ) : (
+                <FaTimesCircle color="#dc3545" />
+              )}
+            </Answer>
           </ListItem>
         ))}
       </List>
       <StyledLink to="/">
         <Button>Return Home</Button>
       </StyledLink>
-    </Container>
+    </RecapContainer>
   );
 };
 
 export default Recap;
 
-const Container = styled.div`
-  text-align: center;
-  padding: 30px;
+// Styled Components for Recap page
+const RecapContainer = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  padding: ${({ theme }) => theme.padding};
 `;
 
 const Title = styled.h1`
-  color: #333;
+  color: ${({ theme }) => theme.primary};
+  text-align: center;
   margin-bottom: 20px;
 `;
 
 const Score = styled.h2`
-  color: #007bff;
+  text-align: center;
+  color: ${({ theme }) => theme.success};
   margin-bottom: 30px;
 `;
 
 const List = styled.ul`
   list-style: none;
   padding: 0;
-  text-align: left;
-  max-width: 600px;
-  margin: 0 auto 30px;
 `;
 
 const ListItem = styled.li`
-  background: #f8f9fa;
-  border-left: 5px solid ${({ $correct }) => ($correct ? "#28a745" : "#dc3545")};
+  background: ${({ theme }) =>
+    theme.background === "#FFFFFF" ? "#f8f9fa" : "#1e1e1e"};
+  border-left: 5px solid
+    ${({ $correct, theme }) => ($correct ? theme.success : theme.error)};
   margin-bottom: 15px;
   padding: 15px;
-  border-radius: 4px;
+  border-radius: ${({ theme }) => theme.borderRadius};
+`;
+
+const Question = styled.p`
+  font-weight: bold;
+  margin-bottom: 5px;
+`;
+
+const Answer = styled.p`
+  display: flex;
+  align-items: center;
+  gap: 5px;
 `;
 
 const StyledLink = styled(Link)`
-  text-decoration: none;
+  display: block;
+  text-align: center;
+  margin-top: 20px;
 `;
 
 const Button = styled.button`
-  background: #007bff;
-  color: white;
+  background: ${({ theme }) => theme.primary};
+  color: #fff;
   padding: 12px 30px;
   border: none;
-  border-radius: 5px;
+  border-radius: ${({ theme }) => theme.borderRadius};
   cursor: pointer;
   transition: background 0.2s;
 
   &:hover {
-    background: #0056b3;
+    background: ${({ theme }) => theme.primaryHover};
   }
+`;
+
+const Message = styled.p`
+  text-align: center;
+  font-size: 1.2rem;
+  color: ${({ theme }) => theme.text};
+  margin-top: 50px;
 `;

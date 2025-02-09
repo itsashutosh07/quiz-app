@@ -1,17 +1,16 @@
-// src/pages/Dashboard.js
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 /**
- * Dashboard page displays all stored quiz results.
+ * Dashboard page displays the history of quiz attempts.
  */
 const Dashboard = () => {
   const [quizResults] = useLocalStorage("quizResults", []);
 
   return (
-    <Container>
+    <DashboardContainer>
       <Title>Dashboard</Title>
       {quizResults.length === 0 ? (
         <Message>No quiz results available yet.</Message>
@@ -19,85 +18,87 @@ const Dashboard = () => {
         <ResultsList>
           {quizResults.map((result, index) => (
             <ResultItem key={index}>
-              <Subject>{result.subject.toUpperCase()}</Subject>
-              <Score>
+              <ResultSubject>{result.subject.toUpperCase()}</ResultSubject>
+              <ResultScore>
                 Score: {result.score} / {result.total}
-              </Score>
-              <Timestamp>{result.timestamp}</Timestamp>
+              </ResultScore>
+              <ResultTimestamp>{result.timestamp}</ResultTimestamp>
             </ResultItem>
           ))}
         </ResultsList>
       )}
       <StyledLink to="/">
-        <Button>Return Home</Button>
+        <HomeButton>Return Home</HomeButton>
       </StyledLink>
-    </Container>
+    </DashboardContainer>
   );
 };
 
 export default Dashboard;
 
 // --- Styled Components ---
-const Container = styled.div`
+const DashboardContainer = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  padding: ${({ theme }) => theme.padding};
   text-align: center;
-  padding: 30px;
 `;
 
 const Title = styled.h1`
   margin-bottom: 20px;
-  color: #333;
+  color: ${({ theme }) => theme.primary};
 `;
 
 const Message = styled.p`
   font-size: 1.2rem;
-  color: #555;
+  color: ${({ theme }) => theme.text};
 `;
 
 const ResultsList = styled.ul`
   list-style: none;
   padding: 0;
-  max-width: 600px;
   margin: 20px auto;
 `;
 
 const ResultItem = styled.li`
-  background: #f8f9fa;
-  border: 1px solid #ddd;
+  background: ${({ theme }) => theme.background === "#FFFFFF" ? "#f8f9fa" : "#1e1e1e"};
+  border: 1px solid ${({ theme }) => theme.primary};
   margin-bottom: 15px;
   padding: 15px;
-  border-radius: 5px;
+  border-radius: ${({ theme }) => theme.borderRadius};
   text-align: left;
 `;
 
-const Subject = styled.h3`
+const ResultSubject = styled.h3`
   margin: 0 0 5px;
-  color: #007bff;
+  color: ${({ theme }) => theme.primary};
 `;
 
-const Score = styled.p`
+const ResultScore = styled.p`
   margin: 5px 0;
   font-weight: bold;
+  color: ${({ theme }) => theme.success};
 `;
 
-const Timestamp = styled.span`
+const ResultTimestamp = styled.span`
   font-size: 0.9rem;
-  color: #666;
+  color: ${({ theme }) => theme.text};
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-const Button = styled.button`
-  background: #28a745;
-  color: white;
+const HomeButton = styled.button`
+  background: ${({ theme }) => theme.primary};
+  color: #fff;
   padding: 12px 30px;
   border: none;
-  border-radius: 5px;
+  border-radius: ${({ theme }) => theme.borderRadius};
   cursor: pointer;
   transition: background 0.2s;
 
   &:hover {
-    background: #1e7e34;
+    background: ${({ theme }) => theme.primaryHover};
   }
 `;
