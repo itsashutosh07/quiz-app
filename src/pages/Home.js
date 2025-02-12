@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { FaCalculator, FaAtom, FaFlask } from "react-icons/fa";
+
+const glow = keyframes`
+  from { box-shadow: 0 0 0px rgba(0, 0, 0, 0); }
+  to { box-shadow: 0 0 8px rgba(74, 144, 226, 0.6); }
+`;
 
 /**
  * Home page displays the landing page for subject selection.
@@ -46,7 +51,7 @@ const HomeContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: ${({ theme }) => theme.primary};
   margin-bottom: 10px;
 `;
@@ -74,17 +79,15 @@ const SubjectButton = styled.div`
   align-items: center;
   gap: 8px;
   background: ${({ theme }) =>
-    theme.background === "#FFFFFF" ? "#f8f9fa" : "#1e1e1e"};
+    theme.background === "#f5f7fa" ? "#ffffff" : "#2c2c2c"};
   padding: 20px;
   border-radius: ${({ theme }) => theme.borderRadius};
   width: 120px;
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
     transform: scale(1.05);
-    background: ${({ theme }) => theme.primary};
-    color: #fff;
+    animation: ${glow} 0.5s alternate infinite;
   }
 
   span {
@@ -104,7 +107,6 @@ const DashboardButton = styled.button`
   padding: 12px 30px;
   border: none;
   border-radius: ${({ theme }) => theme.borderRadius};
-  cursor: pointer;
   transition: background 0.2s;
 
   &:hover {

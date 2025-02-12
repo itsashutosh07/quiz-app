@@ -1,13 +1,15 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { quizData } from "../data/quizData";
 import useQuiz from "../hooks/useQuiz";
 import { saveQuizResult } from "../services/quizService";
 
-/**
- * Quiz page presents quiz questions, options, and navigation.
- */
+const fadeIn = keyframes`
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
+
 const Quiz = () => {
   const { subject } = useParams();
   const navigate = useNavigate();
@@ -17,7 +19,6 @@ const Quiz = () => {
   const { currentQuestion, selectedAnswer, handleOptionSelect, handleNext } =
     useQuiz(questions);
 
-  // Now, if there are no questions, return early.
   if (questions.length < 1) {
     return <Message>No quiz available for this subject.</Message>;
   }
@@ -57,6 +58,7 @@ const QuizContainer = styled.div`
   max-width: 800px;
   margin: 0 auto;
   padding: ${({ theme }) => theme.padding};
+  animation: ${fadeIn} 0.5s ease-out;
 `;
 
 const QuestionHeader = styled.div`
@@ -65,12 +67,11 @@ const QuestionHeader = styled.div`
 
 const QuestionCount = styled.h3`
   color: ${({ theme }) => theme.primary};
-  margin-bottom: 10px;
   text-align: center;
 `;
 
 const QuestionText = styled.h2`
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: ${({ theme }) => theme.text};
   text-align: center;
   margin-bottom: 30px;
@@ -90,11 +91,11 @@ const OptionButton = styled.button`
   padding: 15px;
   border: none;
   border-radius: ${({ theme }) => theme.borderRadius};
-  cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.2s;
 
   &:hover {
     background: ${({ theme }) => theme.primaryHover};
+    transform: scale(1.02);
   }
 `;
 
@@ -104,13 +105,12 @@ const NextButton = styled.button`
   padding: 12px 30px;
   border: none;
   border-radius: ${({ theme }) => theme.borderRadius};
-  cursor: pointer;
   transition: background 0.2s;
   width: 100%;
 
   &:disabled {
     background: ${({ theme }) =>
-      theme.background === "#FFFFFF" ? "#ccc" : "#444"};
+      theme.background === "#f5f7fa" ? "#ccc" : "#444"};
     cursor: not-allowed;
   }
 

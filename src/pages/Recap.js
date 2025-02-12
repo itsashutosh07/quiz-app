@@ -1,11 +1,17 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 /**
  * Recap page displays quiz results with detailed breakdown.
  */
+
+const fadeIn = keyframes`
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
+
 const Recap = () => {
   const { state } = useLocation();
 
@@ -52,6 +58,7 @@ const RecapContainer = styled.div`
   max-width: 800px;
   margin: 0 auto;
   padding: ${({ theme }) => theme.padding};
+  animation: ${fadeIn} 0.5s ease-out;
 `;
 
 const Title = styled.h1`
@@ -73,12 +80,13 @@ const List = styled.ul`
 
 const ListItem = styled.li`
   background: ${({ theme }) =>
-    theme.background === "#FFFFFF" ? "#f8f9fa" : "#1e1e1e"};
+    theme.background === "#f5f7fa" ? "#ffffff" : "#2c2c2c"};
   border-left: 5px solid
     ${({ $correct, theme }) => ($correct ? theme.success : theme.error)};
   margin-bottom: 15px;
   padding: 15px;
   border-radius: ${({ theme }) => theme.borderRadius};
+  animation: ${fadeIn} 0.4s ease;
 `;
 
 const Question = styled.p`
@@ -104,7 +112,6 @@ const Button = styled.button`
   padding: 12px 30px;
   border: none;
   border-radius: ${({ theme }) => theme.borderRadius};
-  cursor: pointer;
   transition: background 0.2s;
 
   &:hover {

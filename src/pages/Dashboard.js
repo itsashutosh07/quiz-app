@@ -2,10 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import useLocalStorage from "../hooks/useLocalStorage";
+import { keyframes } from "styled-components";
 
 /**
  * Dashboard page displays the history of quiz attempts.
  */
+
+const fadeIn = keyframes`
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
+
 const Dashboard = () => {
   const [quizResults] = useLocalStorage("quizResults", []);
 
@@ -42,6 +49,7 @@ const DashboardContainer = styled.div`
   margin: 0 auto;
   padding: ${({ theme }) => theme.padding};
   text-align: center;
+  animation: ${fadeIn} 0.5s ease-out;
 `;
 
 const Title = styled.h1`
@@ -61,16 +69,23 @@ const ResultsList = styled.ul`
 `;
 
 const ResultItem = styled.li`
-  background: ${({ theme }) => theme.background === "#FFFFFF" ? "#f8f9fa" : "#1e1e1e"};
+  background: ${({ theme }) =>
+    theme.background === "#f5f7fa" ? "#ffffff" : "#2c2c2c"};
   border: 1px solid ${({ theme }) => theme.primary};
   margin-bottom: 15px;
   padding: 15px;
   border-radius: ${({ theme }) => theme.borderRadius};
   text-align: left;
+  animation: ${fadeIn} 0.4s ease;
+  transition: box-shadow 0.3s;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
 `;
 
 const ResultSubject = styled.h3`
-  margin: 0 0 5px;
+  margin-bottom: 5px;
   color: ${({ theme }) => theme.primary};
 `;
 
@@ -95,7 +110,6 @@ const HomeButton = styled.button`
   padding: 12px 30px;
   border: none;
   border-radius: ${({ theme }) => theme.borderRadius};
-  cursor: pointer;
   transition: background 0.2s;
 
   &:hover {

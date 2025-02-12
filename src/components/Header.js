@@ -32,9 +32,14 @@ const HeaderContainer = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: ${({ theme }) => theme.padding};
-  background: ${({ theme }) => theme.primary};
+  background: linear-gradient(
+    135deg,
+    ${({ theme }) => theme.primary},
+    ${({ theme }) => theme.primaryHover}
+  );
   color: #fff;
   border-radius: ${({ theme }) => theme.borderRadius};
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   margin-bottom: 20px;
 `;
 
@@ -46,8 +51,6 @@ const ToggleButton = styled.button`
   background: transparent;
   border: none;
   color: #fff;
-  cursor: pointer;
-  outline: none;
   transition: transform 0.2s ease;
 
   &:hover {
