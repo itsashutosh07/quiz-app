@@ -1,143 +1,135 @@
+// src/data/quizData.js
+
+// Dummy quiz questions for each subject
 export const quizData = {
-  math: [
+  dsa: [
     {
-      question: "What is 5 + 7?",
+      question: "What is the time complexity of binary search?",
       options: [
-        { answer: "12", isCorrect: true },
-        { answer: "13", isCorrect: false },
-        { answer: "10", isCorrect: false },
-        { answer: "14", isCorrect: false }
-      ]
+        { answer: "O(log n)", isCorrect: true },
+        { answer: "O(n)", isCorrect: false },
+        { answer: "O(n log n)", isCorrect: false },
+        { answer: "O(1)", isCorrect: false },
+      ],
     },
     {
-      question: "Solve: 9 - 4 = ?",
+      question: "Which data structure uses LIFO order?",
       options: [
-        { answer: "5", isCorrect: true },
-        { answer: "6", isCorrect: false },
-        { answer: "4", isCorrect: false },
-        { answer: "3", isCorrect: false }
-      ]
+        { answer: "Stack", isCorrect: true },
+        { answer: "Queue", isCorrect: false },
+        { answer: "Linked List", isCorrect: false },
+        { answer: "Tree", isCorrect: false },
+      ],
     },
-    {
-      question: "What is the product of 3 and 4?",
-      options: [
-        { answer: "12", isCorrect: true },
-        { answer: "7", isCorrect: false },
-        { answer: "9", isCorrect: false },
-        { answer: "15", isCorrect: false }
-      ]
-    },
-    {
-      question: "What is the square of 5?",
-      options: [
-        { answer: "25", isCorrect: true },
-        { answer: "20", isCorrect: false },
-        { answer: "15", isCorrect: false },
-        { answer: "10", isCorrect: false }
-      ]
-    },
-    {
-      question: "What is 20 ÷ 4?",
-      options: [
-        { answer: "5", isCorrect: true },
-        { answer: "4", isCorrect: false },
-        { answer: "6", isCorrect: false },
-        { answer: "8", isCorrect: false }
-      ]
-    }
+    // Add more questions as needed
   ],
-  physics: [
+  oop: [
     {
-      question: "What is the SI unit of force?",
+      question: "What principle does encapsulation represent in OOP?",
       options: [
-        { answer: "Newton", isCorrect: true },
-        { answer: "Joule", isCorrect: false },
-        { answer: "Watt", isCorrect: false },
-        { answer: "Pascal", isCorrect: false }
-      ]
+        { answer: "Data hiding", isCorrect: true },
+        { answer: "Inheritance", isCorrect: false },
+        { answer: "Polymorphism", isCorrect: false },
+        { answer: "Abstraction", isCorrect: false },
+      ],
     },
     {
-      question: "Which law explains the action and reaction forces?",
+      question: "Which keyword is used to inherit a class in Java?",
       options: [
-        { answer: "Newton's Third Law", isCorrect: true },
-        { answer: "Newton's First Law", isCorrect: false },
-        { answer: "Newton's Second Law", isCorrect: false },
-        { answer: "Law of Universal Gravitation", isCorrect: false }
-      ]
+        { answer: "extends", isCorrect: true },
+        { answer: "implements", isCorrect: false },
+        { answer: "inherits", isCorrect: false },
+        { answer: "super", isCorrect: false },
+      ],
     },
-    {
-      question: "What is the speed of light in a vacuum (approx.)?",
-      options: [
-        { answer: "300,000 km/s", isCorrect: true },
-        { answer: "150,000 km/s", isCorrect: false },
-        { answer: "1,000 km/s", isCorrect: false },
-        { answer: "3,000 km/s", isCorrect: false }
-      ]
-    },
-    {
-      question: "What does E=mc² represent?",
-      options: [
-        { answer: "Energy-mass equivalence", isCorrect: true },
-        { answer: "Force and acceleration", isCorrect: false },
-        { answer: "Momentum conservation", isCorrect: false },
-        { answer: "Gravitational potential", isCorrect: false }
-      ]
-    },
-    {
-      question: "Which phenomenon demonstrates the wave nature of light?",
-      options: [
-        { answer: "Diffraction", isCorrect: true },
-        { answer: "Reflection", isCorrect: false },
-        { answer: "Absorption", isCorrect: false },
-        { answer: "Emission", isCorrect: false }
-      ]
-    }
+    // Add more questions as needed
   ],
-  chemistry: [
+  dbms: [
     {
-      question: "What is the chemical formula for water?",
+      question: "Which SQL statement is used to extract data from a database?",
       options: [
-        { answer: "H₂O", isCorrect: true },
-        { answer: "CO₂", isCorrect: false },
-        { answer: "NaCl", isCorrect: false },
-        { answer: "O₂", isCorrect: false }
-      ]
+        { answer: "SELECT", isCorrect: true },
+        { answer: "EXTRACT", isCorrect: false },
+        { answer: "GET", isCorrect: false },
+        { answer: "OPEN", isCorrect: false },
+      ],
     },
     {
-      question: "What is the pH value of pure water?",
+      question: "What does ACID stand for in database systems?",
       options: [
-        { answer: "7", isCorrect: true },
-        { answer: "5", isCorrect: false },
-        { answer: "8", isCorrect: false },
-        { answer: "6", isCorrect: false }
-      ]
+        {
+          answer: "Atomicity, Consistency, Isolation, Durability",
+          isCorrect: true,
+        },
+        {
+          answer: "Accuracy, Consistency, Isolation, Durability",
+          isCorrect: false,
+        },
+        {
+          answer: "Atomicity, Concurrency, Isolation, Durability",
+          isCorrect: false,
+        },
+        {
+          answer: "Atomicity, Consistency, Integration, Durability",
+          isCorrect: false,
+        },
+      ],
+    },
+    // Add more questions as needed
+  ],
+  os: [
+    {
+      question:
+        "Which scheduling algorithm is known as round-robin scheduling?",
+      options: [
+        { answer: "Time-sharing scheduling", isCorrect: true },
+        { answer: "First-Come, First-Served", isCorrect: false },
+        { answer: "Shortest Job First", isCorrect: false },
+        { answer: "Priority scheduling", isCorrect: false },
+      ],
     },
     {
-      question: "Which element is needed for the process of rusting?",
+      question: "What is a deadlock in operating systems?",
       options: [
-        { answer: "Oxygen", isCorrect: true },
-        { answer: "Hydrogen", isCorrect: false },
-        { answer: "Nitrogen", isCorrect: false },
-        { answer: "Carbon", isCorrect: false }
-      ]
+        {
+          answer: "A situation where processes are waiting indefinitely",
+          isCorrect: true,
+        },
+        { answer: "A process that has completed execution", isCorrect: false },
+        { answer: "A process waiting for I/O", isCorrect: false },
+        { answer: "A process that is terminated", isCorrect: false },
+      ],
+    },
+    // Add more questions as needed
+  ],
+  networks: [
+    {
+      question: "Which protocol is used for secure web browsing?",
+      options: [
+        { answer: "HTTPS", isCorrect: true },
+        { answer: "HTTP", isCorrect: false },
+        { answer: "FTP", isCorrect: false },
+        { answer: "SMTP", isCorrect: false },
+      ],
     },
     {
-      question: "What is the common name for sodium chloride?",
+      question: "What does LAN stand for?",
       options: [
-        { answer: "Salt", isCorrect: true },
-        { answer: "Sugar", isCorrect: false },
-        { answer: "Baking Soda", isCorrect: false },
-        { answer: "Vinegar", isCorrect: false }
-      ]
+        { answer: "Local Area Network", isCorrect: true },
+        { answer: "Large Area Network", isCorrect: false },
+        { answer: "Light Area Network", isCorrect: false },
+        { answer: "Long Area Network", isCorrect: false },
+      ],
     },
-    {
-      question: "Which gas is most abundant in the Earth's atmosphere?",
-      options: [
-        { answer: "Nitrogen", isCorrect: true },
-        { answer: "Oxygen", isCorrect: false },
-        { answer: "Carbon Dioxide", isCorrect: false },
-        { answer: "Hydrogen", isCorrect: false }
-      ]
-    }
-  ]
+    // Add more questions as needed
+  ],
 };
+
+// Export subjects array to be used in the UI (order and colors should match the quizData keys)
+export const subjects = [
+  { name: "Data Structures & Algorithms", key: "dsa", color: "#FF6B6B" },
+  { name: "Object-Oriented Programming", key: "oop", color: "#6BFF95" },
+  { name: "Database Management Systems", key: "dbms", color: "#6B95FF" },
+  { name: "Operating Systems", key: "os", color: "#FFA500" },
+  { name: "Computer Networks", key: "networks", color: "#C678DD" },
+];
