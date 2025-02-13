@@ -78,21 +78,22 @@ const SubjectButton = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  background: ${({ theme }) =>
-    theme.background === "#f5f7fa" ? "#ffffff" : "#2c2c2c"};
+  background: ${({ theme }) => theme.cardBackground};
   padding: 20px;
   border-radius: ${({ theme }) => theme.borderRadius};
   width: 120px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 
   &:hover {
-    transform: scale(1.05);
+    transform: translateY(-4px);
     animation: ${glow} 0.5s alternate infinite;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
   }
 
   span {
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 600;
   }
 `;
 

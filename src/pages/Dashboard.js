@@ -69,20 +69,15 @@ const ResultsList = styled.ul`
 `;
 
 const ResultItem = styled.li`
-  background: ${({ theme }) =>
-    theme.background === "#f5f7fa" ? "#ffffff" : "#2c2c2c"};
-  border: 1px solid ${({ theme }) => theme.primary};
+  background: ${({ theme }) => theme.cardBackground};
+  border-left: 5px solid
+    ${({ $correct, theme }) => ($correct ? theme.success : theme.error)};
   margin-bottom: 15px;
   padding: 15px;
   border-radius: ${({ theme }) => theme.borderRadius};
-  text-align: left;
-  animation: ${fadeIn} 0.4s ease;
-  transition: box-shadow 0.3s;
-
-  &:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
+
 
 const ResultSubject = styled.h3`
   margin-bottom: 5px;

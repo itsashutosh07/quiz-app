@@ -89,13 +89,14 @@ const OptionButton = styled.button`
     selected ? theme.primaryHover : theme.primary};
   color: #fff;
   padding: 15px;
-  border: none;
+  border: 2px solid transparent;
   border-radius: ${({ theme }) => theme.borderRadius};
-  transition: background 0.2s, transform 0.2s;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
 
   &:hover {
     background: ${({ theme }) => theme.primaryHover};
     transform: scale(1.02);
+    border-color: ${({ theme }) => theme.primary};
   }
 `;
 

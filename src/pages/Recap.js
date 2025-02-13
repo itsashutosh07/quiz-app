@@ -3,10 +3,6 @@ import { useLocation, Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
-/**
- * Recap page displays quiz results with detailed breakdown.
- */
-
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -36,9 +32,9 @@ const Recap = () => {
             <Answer>
               Your Answer: {item.selected}{" "}
               {item.isCorrect ? (
-                <FaCheckCircle color="#28a745" />
+                <FaCheckCircle color={item.isCorrect ? "#16a34a" : "#dc2626"} />
               ) : (
-                <FaTimesCircle color="#dc3545" />
+                <FaTimesCircle color={item.isCorrect ? "#16a34a" : "#dc2626"} />
               )}
             </Answer>
           </ListItem>
@@ -53,7 +49,8 @@ const Recap = () => {
 
 export default Recap;
 
-// Styled Components for Recap page
+// Styled Components
+
 const RecapContainer = styled.div`
   max-width: 800px;
   margin: 0 auto;
@@ -79,25 +76,27 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li`
-  background: ${({ theme }) =>
-    theme.background === "#f5f7fa" ? "#ffffff" : "#2c2c2c"};
+  background: ${({ theme }) => theme.cardBackground};
   border-left: 5px solid
     ${({ $correct, theme }) => ($correct ? theme.success : theme.error)};
   margin-bottom: 15px;
   padding: 15px;
   border-radius: ${({ theme }) => theme.borderRadius};
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   animation: ${fadeIn} 0.4s ease;
 `;
 
 const Question = styled.p`
   font-weight: bold;
   margin-bottom: 5px;
+  color: ${({ theme }) => theme.text};
 `;
 
 const Answer = styled.p`
   display: flex;
   align-items: center;
   gap: 5px;
+  color: ${({ theme }) => theme.text};
 `;
 
 const StyledLink = styled(Link)`
@@ -113,6 +112,7 @@ const Button = styled.button`
   border: none;
   border-radius: ${({ theme }) => theme.borderRadius};
   transition: background 0.2s;
+  font-family: ${({ theme }) => theme.fontFamily};
 
   &:hover {
     background: ${({ theme }) => theme.primaryHover};
