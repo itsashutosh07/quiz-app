@@ -1,23 +1,14 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Loading from "./components/Loading";
-import { logInfo } from "./utils/logger";
 
-// Lazy load pages
 const Home = React.lazy(() => import("./pages/Home"));
 const Quiz = React.lazy(() => import("./pages/Quiz"));
 const Recap = React.lazy(() => import("./pages/Recap"));
 const Dashboard = React.lazy(() => import("./pages/Dashboard"));
 
-/**
- * App component that sets up routing with error boundaries and lazy loading.
- */
 function App() {
-  useEffect(() => {
-    logInfo("App component mounted.");
-  }, []);
-
   return (
     <ErrorBoundary>
       <Suspense fallback={<Loading />}>

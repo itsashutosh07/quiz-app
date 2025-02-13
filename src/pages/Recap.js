@@ -1,49 +1,70 @@
 import React from "react";
-import { useLocation, Link } from "react-router-dom";
-import styled, { keyframes } from "styled-components";
-import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
-
-/**
- * Recap page displays quiz results with detailed breakdown.
- */
-
-const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-`;
+import styled from "styled-components";
+import {
+  RadialBarChart,
+  RadialBar,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import { Button } from "../components/ui/button";
+import { Link, useLocation } from "react-router-dom";
 
 const Recap = () => {
   const { state } = useLocation();
-
   if (!state) {
     return <Message>No quiz data found. Please take a quiz first.</Message>;
   }
-
   const { answers, score, total } = state;
+  const percentage = Math.round((score / total) * 100);
+
+  // Data for RadialBarChart
+  const data = [
+    {
+      name: "Score",
+      value: percentage,
+      fill: "#28a745",
+    },
+  ];
 
   return (
     <RecapContainer>
-      <Title>Quiz Recap</Title>
+      <SectionTitle>Quiz Recap</SectionTitle>
       <Score>
-        Your Score: {score} / {total}
+        Your Score: {score} / {total} ({percentage}%)
       </Score>
-      <List>
+      <ChartContainer>
+        <ResponsiveContainer width="100%" height={300}>
+          <RadialBarChart
+            cx="50%"
+            cy="50%"
+            innerRadius="20%"
+            outerRadius="90%"
+            data={data}
+            startAngle={90}
+            endAngle={-270}
+          >
+            <RadialBar minAngle={15} background clockWise dataKey="value" />
+            <Legend
+              iconSize={10}
+              layout="vertical"
+              verticalAlign="middle"
+              wrapperStyle={{ color: "#fff", fontSize: "1rem" }}
+            />
+          </RadialBarChart>
+        </ResponsiveContainer>
+      </ChartContainer>
+      <ResultsList>
         {answers.map((item, index) => (
-          <ListItem key={index} $correct={item.isCorrect}>
-            <Question>
+          <ResultItem key={index} correct={item.isCorrect}>
+            <QuestionText>
               <strong>Q{index + 1}:</strong> {item.question}
-            </Question>
-            <Answer>
-              Your Answer: {item.selected}{" "}
-              {item.isCorrect ? (
-                <FaCheckCircle color="#28a745" />
-              ) : (
-                <FaTimesCircle color="#dc3545" />
-              )}
-            </Answer>
-          </ListItem>
+            </QuestionText>
+            <AnswerText>
+              Your Answer: {item.selected} {item.isCorrect ? "✅" : "❌"}
+            </AnswerText>
+          </ResultItem>
         ))}
-      </List>
+      </ResultsList>
       <StyledLink to="/">
         <Button>Return Home</Button>
       </StyledLink>
@@ -53,75 +74,63 @@ const Recap = () => {
 
 export default Recap;
 
-// Styled Components for Recap page
 const RecapContainer = styled.div`
   max-width: 800px;
-  margin: 0 auto;
+  margin: 40px auto;
   padding: ${({ theme }) => theme.padding};
-  animation: ${fadeIn} 0.5s ease-out;
+  text-align: center;
 `;
 
-const Title = styled.h1`
-  color: ${({ theme }) => theme.primary};
-  text-align: center;
+const SectionTitle = styled.h2`
+  font-size: 2rem;
   margin-bottom: 20px;
+  color: ${({ theme }) => theme.primary};
 `;
 
-const Score = styled.h2`
-  text-align: center;
+const Score = styled.h3`
+  font-size: 1.8rem;
+  margin-bottom: 30px;
   color: ${({ theme }) => theme.success};
+`;
+
+const ChartContainer = styled.div`
   margin-bottom: 30px;
 `;
 
-const List = styled.ul`
+const ResultsList = styled.ul`
   list-style: none;
   padding: 0;
+  margin-bottom: 20px;
 `;
 
-const ListItem = styled.li`
-  background: ${({ theme }) =>
-    theme.background === "#f5f7fa" ? "#ffffff" : "#2c2c2c"};
+const ResultItem = styled.li`
+  background: ${({ theme, correct }) => (correct ? "#2d4739" : "#4e2d2d")};
   border-left: 5px solid
-    ${({ $correct, theme }) => ($correct ? theme.success : theme.error)};
+    ${({ theme, correct }) => (correct ? theme.success : theme.error)};
   margin-bottom: 15px;
   padding: 15px;
   border-radius: ${({ theme }) => theme.borderRadius};
-  animation: ${fadeIn} 0.4s ease;
+  text-align: left;
 `;
 
-const Question = styled.p`
+const QuestionText = styled.p`
   font-weight: bold;
   margin-bottom: 5px;
+  color: ${({ theme }) => theme.text};
 `;
 
-const Answer = styled.p`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-`;
-
-const StyledLink = styled(Link)`
-  display: block;
-  text-align: center;
-  margin-top: 20px;
-`;
-
-const Button = styled.button`
-  background: ${({ theme }) => theme.primary};
-  color: #fff;
-  padding: 12px 30px;
-  border: none;
-  border-radius: ${({ theme }) => theme.borderRadius};
-  transition: background 0.2s;
-
-  &:hover {
-    background: ${({ theme }) => theme.primaryHover};
-  }
+const AnswerText = styled.p`
+  font-size: 1rem;
+  color: ${({ theme }) => theme.text};
 `;
 
 const Message = styled.p`
   text-align: center;
   font-size: 1.2rem;
-  color: ${({ theme }) => theme.text};
   margin-top: 50px;
+  color: ${({ theme }) => theme.text};
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `;

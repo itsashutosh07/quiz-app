@@ -16,20 +16,21 @@ export const GlobalStyles = createGlobalStyle`
   body {
     background: ${({ theme }) => theme.background};
     color: ${({ theme }) => theme.text};
-    font-family: ${({ theme }) => theme.fontFamily};
+    font-family: 'Space Grotesk', sans-serif;
     line-height: 1.6;
-    transition: background 0.3s ease, color 0.3s ease;
     padding: ${({ theme }) => theme.padding};
     animation: ${fadeIn} 0.5s ease-in-out;
+    transition: background 0.3s ease, color 0.3s ease;
   }
 
   a {
     text-decoration: none;
     color: inherit;
   }
-  
+
   button {
     font-family: inherit;
     cursor: pointer;
+    border: none;
   }
 `;
